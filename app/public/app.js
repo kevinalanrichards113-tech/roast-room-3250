@@ -202,7 +202,7 @@ function layoutStage() {
     const s = state.byKey[k];
     const x = W * xs[i];
     const d = ((x - cx) / rx) ** 2;
-    const size = H * (narrow ? 0.5 + 0.08 * d : 0.37 + 0.07 * d) * fit;
+    const size = H * (narrow ? 0.5 + 0.08 * d : 0.37 + 0.07 * d) * fit * 0.9;
     const bottom = edge(x) + size * 0.2;
     const el = $(`#seat-${s.key}`);
     Object.assign(el.style, { left: `${x - size / 2}px`, top: `${bottom - size}px`, width: `${size}px`, height: `${size}px`, zIndex: 10 + Math.round(d * 10) });
