@@ -17,6 +17,12 @@ let running = null; // one council at a time (API runner)
 // "api": the room can also run councils itself on ANTHROPIC_API_KEY (COUNCIL_RUNNER=api in .env).
 const RUNNER = (process.env.COUNCIL_RUNNER || env("COUNCIL_RUNNER") || "viewer").toLowerCase() === "api" ? "api" : "viewer";
 watch.startWatching();
+// Questions typed into the ask bar on a viewer (the web copy) wait here for
+// Mica, who runs the council and lands the session in Past sessions.
+const QFILE = path.join(APP_ROOT, "questions.json");
+function loadQuestions() { try { const q = JSON.parse(fs.readFileSync(QFILE, "utf8")); return Array.isArray(q) ? q : []; } catch { return []; } }
+function saveQuestions(qs) { try { fs.writeFileSync(QFILE, JSON.stringify(qs, null, 2)); } catch { /* read-only disk: the queue then lives only in the response */ } }
+
 
 function send(res, code, body, type = "application/json") {
   res.writeHead(code, { "content-type": type, "cache-control": "no-store" });
@@ -40,6 +46,15 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { seats, board: BOARD, models: MODELS, runner: RUNNER, hasKey: Boolean(env("MODEL_API_KEY") || env("META_API_KEY")) });
     }
     if (p === "/api/usage") return send(res, 200, usage);
+    if (p === "/api/questions" && req.method === "GET") return send(res, 200, { questions: loadQuestions() });
+    if (p === "/api/questions" && req.method === "POST") {
+      const { prompt, mode } = await readJson(req);
+      if (!prompt || prompt.trim().length < 10) return send(res, 400, { error: "Give the council a real question (at least a sentence)." });
+      const q = { id: `q-${Date.now().toString(36)}`, prompt: prompt.trim().slice(0, 4000), mode: mode === "quick" ? "quick" : "full", at: new Date().toISOString(), status: "queued" };
+      const qs = [q, ...loadQuestions()].slice(0, 50);
+      saveQuestions(qs);
+      return send(res, 200, { ok: true, id: q.id, questions: qs });
+    }
     if (p === "/api/council" && req.method === "POST") {
       if (RUNNER !== "api") return send(res, 403, { error: "This room is a viewer. Run the council in chat or Muse, or set COUNCIL_RUNNER=api in .env to chat here." });
       if (running && getSession(running)?.status === "running") return send(res, 409, { error: "A council is already in session. Wait for its verdict." });
