@@ -112,6 +112,7 @@ async function boot() {
   if (ss.running) attach(ss.running);
   else if (ss.live) attach(ss.live);
   refreshUsage();
+  loadQueue();
   setInterval(watchForLive, 2500);
   setInterval(tickWait, 1000);
 }
@@ -246,6 +247,31 @@ function bindUI() {
     if (!r.ok) return toast(j.error || "Could not start the council.");
     attach(j.id);
   });
+  $("#askbar").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const prompt = $("#askPrompt").value.trim();
+    if (prompt.length < 10) return toast("Give the council a real question, at least a sentence.");
+    const mode = $('input[name="askmode"]:checked').value;
+    $("#askBtn").disabled = true;
+    try {
+      if (state.runner === "api") {
+        const r = await fetch("/api/council", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ prompt, mode }) });
+        const j = await r.json();
+        if (!r.ok) return toast(j.error || "Could not start the council.");
+        $("#askPrompt").value = "";
+        attach(j.id);
+      } else {
+        const r = await fetch("/api/questions", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ prompt, mode }) });
+        const j = await r.json();
+        if (!r.ok) return toast(j.error || "Could not save the question.");
+        $("#askPrompt").value = "";
+        askStatus("Saved. Mica picks questions up from here, runs the council, and the verdict lands under Past sessions.");
+        renderQueue(j.questions);
+      }
+    } finally {
+      $("#askBtn").disabled = false;
+    }
+  });
   const openFrom = (e) => { const b = e.target.closest("[data-seat]"); if (b) openCard(b.dataset.seat); };
   $("#seats").addEventListener("click", openFrom);
   $("#plates").addEventListener("click", openFrom);
@@ -281,6 +307,31 @@ function bindUI() {
     $$(".speed button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
   }));
   $("#skipBtn").addEventListener("click", () => player.skip());
+}
+
+// ------------------------------------------------------------- the ask bar under the table
+// One standing box for new questions. In api mode it convenes the council right
+// here; in viewer mode (the web copy) it saves the question for Mica, who runs
+// the council and lands the session in Past sessions.
+function askStatus(msg) {
+  const s = $("#askStatus");
+  s.textContent = msg;
+  s.hidden = !msg;
+}
+function renderQueue(qs) {
+  const ul = $("#askQueue");
+  if (!qs || !qs.length) { ul.hidden = true; ul.innerHTML = ""; return; }
+  ul.innerHTML = qs.slice(0, 5).map((q) => {
+    const when = new Date(q.at).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    const text = q.prompt.length > 140 ? q.prompt.slice(0, 140) + "\u2026" : q.prompt;
+    return `<li><span class="q-when">Queued ${esc(when)}</span>${esc(text)}</li>`;
+  }).join("");
+  ul.hidden = false;
+}
+async function loadQueue() {
+  if (state.runner === "api") return;
+  const j = await fetch("/api/questions").then((x) => x.json()).catch(() => null);
+  if (j) renderQueue(j.questions);
 }
 
 // ------------------------------------------------------------- the player

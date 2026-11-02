@@ -55,7 +55,7 @@
           <div class="waiting" id="waiting" hidden>
             <span class="pulse"><i></i>The room is open</span>
             <h2 data-type>Bring a question to the Roast Room</h2>
-            <p>Ask in chat for the 3250 roast room with your question, or run it in Muse. The council shows up here and argues it out live.</p>
+            <p>Type your question in the box under the table and Mica will convene the council, or run it in Muse. The council shows up here and argues it out live.</p>
             <code>roast room 3250: should we ...</code>
             <div class="row"><button class="ghost" type="button" id="waitGuide">What to put in your question</button><button class="ghost" type="button" id="waitHistory">Watch a past council</button></div>
           </div>
@@ -106,6 +106,19 @@
           <button type="button" class="skip" id="skipBtn">Skip ahead</button>
         </div>
       </div>
+      <form class="askbar" id="askbar">
+        <label class="askbar-label" for="askPrompt">Ask the council a new question</label>
+        <textarea id="askPrompt" rows="2" placeholder="The question, the options on the table, and the week or reading it belongs to."></textarea>
+        <div class="askbar-row">
+          <div class="mode" role="radiogroup" aria-label="Council size">
+            <label><input type="radio" name="askmode" value="full" checked><span>Full council <small>7 seats, 3 rounds</small></span></label>
+            <label><input type="radio" name="askmode" value="quick"><span>Quick <small>4 seats, 2 rounds</small></span></label>
+          </div>
+          <button class="convene" type="submit" id="askBtn">Ask the council</button>
+        </div>
+        <p class="askbar-status" id="askStatus" hidden></p>
+        <ul class="askbar-queue" id="askQueue" hidden></ul>
+      </form>
     </section>
 
     <aside class="panel" aria-label="Key points">
