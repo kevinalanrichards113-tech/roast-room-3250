@@ -97,19 +97,40 @@ export async function stream({ system, messages, maxTokens = 2000, onText = () =
   return text;
 }
 
-/** One call with structured JSON output matching `schema`. The schema is
- *  given to the model as an instruction and the reply is parsed strictly. */
-export async function json({ system, prompt, schema, maxTokens = 4000 }) {
-  const instructions =
-    flatten(system) +
-    "\n\nRespond with a single JSON object that matches this JSON schema exactly. No prose, no markdown, no code fences.\n" +
-    JSON.stringify(schema);
-  const raw = await callResponses({ instructions, input: prompt, maxTokens });
+/** Extract and parse the JSON object in a model reply. One cheap salvage is
+ *  attempted (trailing commas before a closing bracket); anything worse is
+ *  the caller's signal to ask the model again. */
+export function parseChairJson(raw) {
   const cleaned = raw.replace(/```(?:json)?/g, "").trim();
   const start = cleaned.indexOf("{");
   const end = cleaned.lastIndexOf("}");
   if (start < 0 || end <= start) throw new Error("Chair output was not JSON");
-  return JSON.parse(cleaned.slice(start, end + 1));
+  const slice = cleaned.slice(start, end + 1);
+  try { return JSON.parse(slice); }
+  catch (e) {
+    try { return JSON.parse(slice.replace(/,\s*([}\]])/g, "$1")); }
+    catch { throw e; }
+  }
+}
+
+/** One call with structured JSON output matching `schema`. The schema is
+ *  given to the model as an instruction. If the reply is not valid JSON
+ *  (an unescaped quote, a dropped comma), the model is asked again with the
+ *  parse error named, up to three attempts in total, before giving up. */
+export async function json({ system, prompt, schema, maxTokens = 4000 }) {
+  const base =
+    flatten(system) +
+    "\n\nRespond with a single JSON object that matches this JSON schema exactly. No prose, no markdown, no code fences.\n" +
+    JSON.stringify(schema);
+  let lastErr;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const instructions = attempt === 0 ? base
+      : base + `\n\nYour previous reply was not valid JSON (${lastErr ? lastErr.message : "parse error"}). Reply again with ONLY the JSON object: escape every quote inside a string and close every array and object.`;
+    const raw = await callResponses({ instructions, input: prompt, maxTokens });
+    try { return parseChairJson(raw); }
+    catch (e) { lastErr = e; }
+  }
+  throw lastErr || new Error("Chair output was not JSON");
 }
 
 // JSON schema helpers (unchanged from the original client)
