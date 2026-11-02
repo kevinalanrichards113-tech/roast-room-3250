@@ -1,0 +1,45 @@
+{
+  "title": "Week 13 lead: Graeber or Golumbia first?",
+  "decision": "What opens the Week 13 scholarship lecture, 13-1.",
+  "mode": "quick",
+  "options": [
+    {
+      "id": "A",
+      "label": "Lead with Graeber's barter myth"
+    },
+    {
+      "id": "B",
+      "label": "Lead with Golumbia's politics of Bitcoin"
+    },
+    {
+      "id": "C",
+      "label": "Split the lecture evenly"
+    }
+  ],
+  "weights": {
+    "graeber": {
+      "weight": 3,
+      "reason": "The frame under debate is his"
+    },
+    "golumbia": {
+      "weight": 3,
+      "reason": "The assigned anchor is his"
+    },
+    "mckenzie": {
+      "weight": 2,
+      "reason": "His cases must land inside the frame"
+    },
+    "lynas": {
+      "weight": 1,
+      "reason": "The 13-3 energy callback is his stake"
+    }
+  },
+  "seats": [
+    "graeber",
+    "golumbia",
+    "mckenzie",
+    "lynas"
+  ],
+  "brief": "Week 13 money week: Graeber's Debt is lecture-only but is the debate's ground; Golumbia anchors the assigned side. The instructor leans Graeber-first for the hook and worries the politics then reads as an afterthought.",
+  "assumptions": []
+}

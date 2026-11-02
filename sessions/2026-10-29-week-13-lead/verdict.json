@@ -1,0 +1,75 @@
+{
+  "label": "GO WITH CONDITIONS",
+  "call": "Lead 13-1 with Golumbia's politics of Bitcoin, opened by Graeber's barter demolition as a short, flagged ground-clearing prologue.",
+  "recommended": "B",
+  "why": [
+    {
+      "point": "The assigned anchor leads its own week; the lecture's summit should be the text students actually read.",
+      "seat": "Golumbia",
+      "framework": "Software as politics"
+    },
+    {
+      "point": "Bullion must be visible as a fantasy before its politics can be traced, so the demolition earns a brief prologue.",
+      "seat": "Graeber",
+      "framework": "Credit versus bullion"
+    },
+    {
+      "point": "The politics frame turns the fraud cases from true crime into structure.",
+      "seat": "McKenzie",
+      "framework": "Old fraud, new rails"
+    }
+  ],
+  "minority": {
+    "seat": "Graeber",
+    "quote": "The demolition must be explicitly flagged as ground-clearing, and it should be short.",
+    "would_have_to_be_true": "Students arrive holding the barter fable as a defended belief, not an absorbed story."
+  },
+  "next_steps": [
+    {
+      "when": "This week",
+      "action": "Re-outline 13-1 to prologue-politics-evidence and time the prologue."
+    },
+    {
+      "when": "Before recording",
+      "action": "Verify the concentration figures and the energy number against sources."
+    },
+    {
+      "when": "Week 13 package approval",
+      "action": "Match the 13-3 callback line to the planted 13-1 line."
+    }
+  ],
+  "kill_criteria": "If the prologue cannot be told honestly in under three minutes, fall back to the even split rather than truncating Golumbia.",
+  "conditions": [
+    "Prologue under three minutes, flagged as contestable ground",
+    "Title, first slide, and close are the politics of Bitcoin",
+    "Tether reserve question gets two minutes inside 13-1",
+    "One line plants proof-of-work's energy cost; 13-3 segment stays whole"
+  ],
+  "fights": [
+    {
+      "crux": "Does the hook or the politics land first?",
+      "story": "Graeber opened for the hook; Golumbia answered that the first frame becomes the topic. Graeber moved to a prologue; Golumbia absorbed it as staging."
+    },
+    {
+      "crux": "Can lecture-only material carry the frame?",
+      "story": "Graeber raised it against himself; the room resolved it by flagging the frame as contestable ground inside the lecture."
+    }
+  ],
+  "amendments": [
+    {
+      "seat": "Graeber",
+      "amendment": "Add the barter demolition as a flagged prologue under three minutes.",
+      "adopted": true,
+      "reason": "His sequence point survived rebuttal and his own lecture-only worry supplied the flag."
+    },
+    {
+      "seat": "Lynas",
+      "amendment": "Plant one line naming proof-of-work's energy cost as a design choice.",
+      "adopted": true,
+      "reason": "Cheap, and it loads the 13-3 callback."
+    }
+  ],
+  "cheapest_test": "Time the 13-1 narration draft with the prologue inserted; the genealogy must start before the midpoint.",
+  "revisit": "After the Week 13 live sessions, with student discussion posts as evidence.",
+  "override_note": ""
+}

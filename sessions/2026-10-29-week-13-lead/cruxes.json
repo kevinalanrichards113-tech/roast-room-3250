@@ -1,0 +1,42 @@
+{
+  "cruxes": [
+    {
+      "question": "Does the hook or the politics have to land first?",
+      "sides": [
+        {
+          "position": "Clear the ground first",
+          "seats": [
+            "Graeber",
+            "McKenzie"
+          ]
+        },
+        {
+          "position": "Politics is the topic, not the garnish",
+          "seats": [
+            "Golumbia",
+            "Lynas"
+          ]
+        }
+      ]
+    },
+    {
+      "question": "Can lecture-only material honestly carry the frame?",
+      "sides": [
+        {
+          "position": "Yes, if it is flagged as ground, not gospel",
+          "seats": [
+            "Graeber"
+          ]
+        },
+        {
+          "position": "The assigned text should lead its own week",
+          "seats": [
+            "Golumbia"
+          ]
+        }
+      ]
+    }
+  ],
+  "unanimous": false,
+  "note": "The room agrees on the destination - students who can argue both what money is and whose politics Bitcoin encodes - and fights over which frame students meet first, and in whose voice."
+}
