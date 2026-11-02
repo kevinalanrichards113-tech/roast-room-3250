@@ -1,0 +1,146 @@
+{
+  "board": "ask",
+  "default": [
+    "zuboff",
+    "sumpter",
+    "lu",
+    "bender-hanna",
+    "graeber",
+    "golumbia",
+    "butler"
+  ],
+  "seats": [
+    {
+      "key": "zuboff",
+      "name": "Shoshana Zuboff",
+      "short": "Zuboff",
+      "initials": "SZ",
+      "slug": "shoshana-zuboff",
+      "pillar": "Surveillance and power",
+      "question": "Who collects the behavioral data, and what power over citizens does it buy?",
+      "dimension": "Power and surveillance",
+      "color": "#7a4f9e"
+    },
+    {
+      "key": "sumpter",
+      "name": "David Sumpter",
+      "short": "Sumpter",
+      "initials": "DS",
+      "slug": "david-sumpter",
+      "pillar": "Algorithms and profiling",
+      "question": "What do the models actually do at scale, and who gets profiled, sorted, or miscounted?",
+      "dimension": "Model mechanics and profiling",
+      "color": "#2e6da4"
+    },
+    {
+      "key": "lu",
+      "name": "Sylvia Lu",
+      "short": "Lu",
+      "initials": "SL",
+      "slug": "sylvia-lu",
+      "pillar": "Opacity and accountability",
+      "question": "Which kind of opacity is this - technical, trade-secret, or managerial - and what disclosure would break it?",
+      "dimension": "Opacity and disclosure",
+      "color": "#5b4a8a"
+    },
+    {
+      "key": "bender-hanna",
+      "name": "Emily M. Bender & Alex Hanna",
+      "short": "Bender & Hanna",
+      "initials": "BH",
+      "slug": "bender-hanna",
+      "pillar": "AI hype and its costs",
+      "question": "What is being sold as intelligence here, who profits from the story, and who pays?",
+      "dimension": "Hype, extraction, and labor",
+      "color": "#b03a5b"
+    },
+    {
+      "key": "graeber",
+      "name": "David Graeber",
+      "short": "Graeber",
+      "initials": "DG",
+      "slug": "david-graeber",
+      "pillar": "Debt, money, and social relations",
+      "question": "Money is a ledger of relations - who owes whom here, and who got to write the ledger?",
+      "dimension": "Money as social relation",
+      "color": "#8a6d1f"
+    },
+    {
+      "key": "golumbia",
+      "name": "David Golumbia",
+      "short": "Golumbia",
+      "initials": "DGo",
+      "slug": "david-golumbia",
+      "pillar": "The politics of computing and crypto",
+      "question": "Whose politics does this technology encode, whatever its users say they intend?",
+      "dimension": "Encoded politics",
+      "color": "#4f772d"
+    },
+    {
+      "key": "butler",
+      "name": "Judith Butler",
+      "short": "Butler",
+      "initials": "JB",
+      "slug": "judith-butler",
+      "pillar": "Precarity and whose lives count",
+      "question": "Whose lives are framed as grievable and whose are made precarious by this arrangement?",
+      "dimension": "Precarity and grievability",
+      "color": "#6d4c7d"
+    },
+    {
+      "key": "horkheimer-adorno",
+      "name": "Max Horkheimer & Theodor W. Adorno",
+      "short": "Horkheimer & Adorno",
+      "initials": "HA",
+      "slug": "horkheimer-adorno",
+      "pillar": "Instrumental reason",
+      "question": "Has the question 'is it just, is it good?' been replaced by 'how fast, how efficient, how computable?'",
+      "dimension": "Reason and domination",
+      "color": "#555f6e"
+    },
+    {
+      "key": "forrest",
+      "name": "Katherine B. Forrest",
+      "short": "Forrest",
+      "initials": "KF",
+      "slug": "katherine-forrest",
+      "pillar": "Algorithmic justice and due process",
+      "question": "Can this decision be explained, appealed, and owned by an accountable human?",
+      "dimension": "Due process and appeal",
+      "color": "#38618c"
+    },
+    {
+      "key": "mckenzie",
+      "name": "Ben McKenzie (with Jacob Silverman)",
+      "short": "McKenzie",
+      "initials": "BM",
+      "slug": "ben-mckenzie",
+      "pillar": "Crypto fraud and the real money",
+      "question": "Follow the actual money: who got rich, who got burned, and where did the cash really go?",
+      "dimension": "Fraud and follow-the-money",
+      "color": "#a05c2c"
+    },
+    {
+      "key": "vandijk",
+      "name": "Jan van Dijk",
+      "short": "van Dijk",
+      "initials": "JvD",
+      "slug": "jan-van-dijk",
+      "pillar": "Networks, access, and exclusion",
+      "question": "How do networks restructure who gets access, skills, and a voice - and who is left outside?",
+      "dimension": "Access and network power",
+      "color": "#1f7a6d"
+    },
+    {
+      "key": "lynas",
+      "name": "Mark Lynas",
+      "short": "Lynas",
+      "initials": "ML",
+      "slug": "mark-lynas",
+      "pillar": "Climate and evidence",
+      "question": "Does this survive contact with the physical planet - the emissions, the energy, the degrees?",
+      "dimension": "Climate and physical evidence",
+      "color": "#3d8b4f"
+    }
+  ]
+}
